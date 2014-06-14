@@ -1,1 +1,6 @@
 /SistemaIntercambio/nbproject/private/
+/SistemaIntercambio/build/
+/SistemaIntercambio/dist/
+/SistemaIntercambio/SQLServer/SQLServer/ExampleSQLServer/build/
+/SistemaIntercambio/SQLServer/SQLServer/ExampleSQLServer/dist/
+/SistemaIntercambio/SQLServer/SQLServer/ExampleSQLServer/nbproject/private/

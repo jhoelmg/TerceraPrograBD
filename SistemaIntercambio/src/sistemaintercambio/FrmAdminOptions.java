@@ -62,6 +62,11 @@ public class FrmAdminOptions extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.setToolTipText("");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnVerTransacciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnVerTransacciones.setText("Ver Transacciones");
@@ -73,6 +78,11 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
         btnCrearAgente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCrearAgente.setText("Crear Agente");
+        btnCrearAgente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearAgenteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,6 +150,20 @@ public class FrmAdminOptions extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCambiarPasswordActionPerformed
+
+    private void btnCrearAgenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearAgenteActionPerformed
+        // TODO add your handling code here:
+        FrmInsertarAgente frm = new FrmInsertarAgente(userId, encryptedPassword);
+        frm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCrearAgenteActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        FrmLogin frm = new FrmLogin();
+        frm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

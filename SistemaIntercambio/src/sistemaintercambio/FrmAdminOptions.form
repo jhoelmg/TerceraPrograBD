@@ -163,6 +163,9 @@
         <Property name="text" type="java.lang.String" value="Salir"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnVerTransacciones">
       <Properties>
@@ -189,6 +192,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Crear Agente"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearAgenteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -51,18 +51,15 @@ public class FrmCambiarPassword extends javax.swing.JFrame {
 
     private void changePassord(String pOldPassword, String pNewPassword){
        
-        String encryptedOldPassword = encryptPassword(pOldPassword);
-        String encryptedNewPassword = encryptPassword(pNewPassword);
-
         DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
         UsuarioDAO usuarioDAO = sqlserverFactory.getUsuarioDAO();
         
-        if(!encryptedOldPassword.equals(encryptedPassword))
+        if(!pOldPassword.equals(encryptedPassword))
             JOptionPane.showMessageDialog(this, "Su contraseña actual es incorrecta");
         else
         {
-            usuarioDAO.changePassword(userId, encryptedNewPassword);
-            encryptedPassword = encryptedNewPassword;
+            usuarioDAO.changePassword(userId, pNewPassword);
+            encryptedPassword = pNewPassword;
             JOptionPane.showMessageDialog(this, "Contraseña cambiada exitosamente");
         }
 
@@ -178,18 +175,18 @@ public class FrmCambiarPassword extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        String oldPassword = String.valueOf(pfOldPassword.getPassword());
-        String newPassword = String.valueOf(pfNewPassword.getPassword());
-        String newPasswordR = String.valueOf(pfNewPasswordR.getPassword());
+
+        String encryptedOldPassword = encryptPassword(String.valueOf(pfOldPassword.getPassword()));
+        String encryptedNewPassword = encryptPassword(String.valueOf(pfNewPassword.getPassword()));
+        String encryptedNewPasswordR = encryptPassword(String.valueOf(pfNewPasswordR.getPassword()));
         
-        if(!newPassword.equals(newPasswordR))
+        if(!encryptedNewPassword.equals(encryptedNewPasswordR))
         {
             JOptionPane.showMessageDialog(this, "Su nueva contraseña no coincide en los dos espacios");
         }
         else
         {
-            changePassord(oldPassword,newPassword);
+            changePassord(encryptedNewPassword,encryptedNewPassword);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 

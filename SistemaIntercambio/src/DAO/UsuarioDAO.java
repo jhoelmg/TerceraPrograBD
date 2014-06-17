@@ -7,4 +7,6 @@ public interface UsuarioDAO {
 
     public void changePassword(String pUserId, String pNewPassword);
     
+    public int insertAgent(String pUserId, String pNombre, String pApellP, String pApellM, String pPassword);
+    
 }

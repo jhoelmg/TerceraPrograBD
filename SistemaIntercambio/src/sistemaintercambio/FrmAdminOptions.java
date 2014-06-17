@@ -41,6 +41,11 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
         btnSuspenderParticipante.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSuspenderParticipante.setText("Suspender Participante");
+        btnSuspenderParticipante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuspenderParticipanteActionPerformed(evt);
+            }
+        });
 
         btnCambiarPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCambiarPassword.setText("Cambiar Contraseña");
@@ -164,6 +169,13 @@ public class FrmAdminOptions extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnSuspenderParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuspenderParticipanteActionPerformed
+        // TODO add your handling code here:
+        FrmSuspenderParticipante frm = new FrmSuspenderParticipante(userId, encryptedPassword);
+        frm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSuspenderParticipanteActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

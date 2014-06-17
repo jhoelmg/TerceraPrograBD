@@ -1,6 +1,8 @@
 
 package sistemaintercambio;
 
+import DAO.SesionDAO;
+import Factory.DAOFactory;
 import javax.swing.JOptionPane;
 
 public class FrmAdminOptions extends javax.swing.JFrame {
@@ -13,6 +15,20 @@ public class FrmAdminOptions extends javax.swing.JFrame {
         
         encryptedPassword = pEncryptedPassword;
         userId = pUserId;
+    }
+    
+    private void iniciarSesion(){
+        
+        DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
+        SesionDAO sesionDAO = sqlserverFactory.getSesionDAO();
+        int sesionID = sesionDAO.createSesion(userId);
+        
+        if(sesionID != -1)
+            JOptionPane.showMessageDialog(this, "Sesion "+sesionID+" creada exitosamente");
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Hubo un problema al crear la sesion");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -63,6 +79,11 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
         btnIniciarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnIniciarSesion.setText("Iniciar Sesion Negociacion");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSesionActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalir.setText("Salir");
@@ -176,6 +197,10 @@ public class FrmAdminOptions extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSuspenderParticipanteActionPerformed
+
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+        iniciarSesion();
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

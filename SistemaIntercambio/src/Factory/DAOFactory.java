@@ -27,6 +27,7 @@ public abstract class DAOFactory {
     public abstract UsuarioDAO getUsuarioDAO();
     public abstract AgenteDAO getAgenteDAO();
     public abstract ParticipanteDAO getParticipanteDAO();
+    public abstract SesionDAO getSesionDAO();
 
     
     public static DAOFactory getDAOFactory(int whichFactory){

@@ -1,6 +1,7 @@
 
 package sistemaintercambio;
 
+import DAO.AgenteDAO;
 import DAO.UsuarioDAO;
 import Factory.DAOFactory;
 import java.security.MessageDigest;
@@ -26,8 +27,8 @@ public class FrmInsertarAgente extends javax.swing.JFrame {
                 && String.valueOf(pfPassword.getPassword()).trim().length() != 0)
         {
             DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
-            UsuarioDAO usuarioDAO = sqlserverFactory.getUsuarioDAO();
-            int result = usuarioDAO.insertAgent(txtCedula.getText(), txtNombre.getText(), txtApelliP.getText(), 
+            AgenteDAO agenteDAO = sqlserverFactory.getAgenteDAO();
+            int result = agenteDAO.insertAgent(txtCedula.getText(), txtNombre.getText(), txtApelliP.getText(), 
                                                 txtApelliM.getText(), String.valueOf(pfPassword.getPassword()));
             if(result >= 0 )
                         JOptionPane.showMessageDialog(null, "Agente insertado correctamente!");

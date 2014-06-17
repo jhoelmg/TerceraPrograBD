@@ -1,9 +1,7 @@
 
 package Factory;
 
-//import DAO.*;
-
-import DAO.UsuarioDAO;
+import DAO.*;
 
 
 public abstract class DAOFactory {
@@ -27,7 +25,8 @@ public abstract class DAOFactory {
     public abstract ConsultasDAO getConsultasDAO();*/
     
     public abstract UsuarioDAO getUsuarioDAO();
-
+    public abstract AgenteDAO getAgenteDAO();
+    
     public static DAOFactory getDAOFactory(int whichFactory){
 
         switch(whichFactory){

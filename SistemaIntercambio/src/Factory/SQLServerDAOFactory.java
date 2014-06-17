@@ -38,12 +38,13 @@ public class SQLServerDAOFactory extends DAOFactory {
         // SQLServerPersonDAO implements UsuarioDAO
         return new SQLServerUsuarioDAO();
     }
-/*
+    
     @Override
-    public ConsultasDAO getConsultasDAO() {
-        // SQLServerPersonDAO implements PersonDAO
-        return new SQLServerConsultasDAO();
-    }*/
+    public AgenteDAO getAgenteDAO()
+    {
+        // SQLServerPersonDAO implements UsuarioDAO
+        return new SQLServerAgenteDAO();
+    }
 }
 
 

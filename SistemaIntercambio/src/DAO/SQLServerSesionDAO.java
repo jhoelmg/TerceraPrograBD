@@ -1,11 +1,13 @@
 
 package DAO;
 
+import Clases.Sesion;
 import Factory.SQLServerDAOFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class SQLServerSesionDAO implements SesionDAO{
     
@@ -47,5 +49,68 @@ public class SQLServerSesionDAO implements SesionDAO{
         }
         
         return sesionID;
+    }
+
+    @Override
+    public ArrayList<Sesion> listarSesiones (){
+        ArrayList<Sesion> listaSesiones = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt;
+        ResultSet rs;
+        
+        try{  
+            conn = SQLServerDAOFactory.createConnection();
+            stmt = conn.prepareStatement("EXEC spuListarSesiones");
+            rs = stmt.executeQuery();
+                        
+            while(rs.next()){
+                listaSesiones.add(new Sesion(rs.getInt("idSesion"),rs.getDate("fecha")));
+            }
+        } 
+        catch(SQLException e){
+            System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+        }
+        finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }
+                catch(SQLException e){
+                    System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+                }
+            }
+        }
+        return listaSesiones;
+    }
+
+    @Override
+    public boolean finalizarSesion(String sesionID){
+        
+        Connection conn = null;
+        PreparedStatement stmt;
+        boolean succesful = true;
+        
+        try{  
+            conn = SQLServerDAOFactory.createConnection();
+            stmt = conn.prepareStatement("EXEC spuFinalizarSesion "+sesionID);
+            stmt.execute();
+                  
+        } 
+        catch(SQLException e){
+            succesful = false;
+            System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+        }
+        finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }
+                catch(SQLException e){
+                    System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+                }
+            }
+        }
+        
+        return succesful;
     }
 }

@@ -53,7 +53,7 @@ public class FrmAdminOptions extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblInicio.setText("Bienvenido");
+        lblInicio.setText("Bienvenido Administrador");
 
         btnSuspenderParticipante.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSuspenderParticipante.setText("Suspender Participante");
@@ -76,6 +76,11 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
         btnFinalizarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnFinalizarSesion.setText("Finalizar Sesion Negociacion");
+        btnFinalizarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarSesionActionPerformed(evt);
+            }
+        });
 
         btnIniciarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnIniciarSesion.setText("Iniciar Sesion Negociacion");
@@ -121,7 +126,7 @@ public class FrmAdminOptions extends javax.swing.JFrame {
                         .addComponent(lblInicio)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 20, Short.MAX_VALUE)
+                        .addGap(0, 13, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnListarPizarra, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,6 +206,13 @@ public class FrmAdminOptions extends javax.swing.JFrame {
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         iniciarSesion();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void btnFinalizarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarSesionActionPerformed
+        // TODO add your handling code here:
+        FrmFinalizarSesion frm = new FrmFinalizarSesion(userId, encryptedPassword);
+        frm.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnFinalizarSesionActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

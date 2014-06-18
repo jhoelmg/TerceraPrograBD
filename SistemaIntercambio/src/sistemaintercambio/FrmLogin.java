@@ -27,10 +27,15 @@ public class FrmLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sus usuario se encuentra temporalmente suspendido");
         else
         {
-            if (userType.equals("Administrador"))
-            {
-                FrmAdminOptions frmAdmin = new FrmAdminOptions(pUserId,encryptedPassword);
-                frmAdmin.setVisible(true);
+            switch (userType) {
+                case "Administrador":
+                    FrmAdminOptions frmAdmin = new FrmAdminOptions(pUserId,encryptedPassword);
+                    frmAdmin.setVisible(true);
+                    break;
+                case "Agente":
+                    FrmAgentOptions frmAgent = new FrmAgentOptions(pUserId, encryptedPassword);
+                    frmAgent.setVisible(true);
+                    break;          
             }
             this.setVisible(false);
         }

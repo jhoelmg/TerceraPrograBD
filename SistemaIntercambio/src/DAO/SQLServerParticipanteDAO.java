@@ -4,6 +4,7 @@ package DAO;
 import Clases.Participante;
 import Factory.SQLServerDAOFactory;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,8 +45,8 @@ public class SQLServerParticipanteDAO implements ParticipanteDAO{
         return listaParticipantes;
     }
 
-     @Override 
-     public boolean suspenderParticipante(String pCedula){
+    @Override 
+    public boolean suspenderParticipante(String pCedula){
         
         Connection conn = null;
         PreparedStatement stmt;
@@ -75,4 +76,41 @@ public class SQLServerParticipanteDAO implements ParticipanteDAO{
         return succesful;
      }
     
+    @Override
+    public boolean insertarParticipante(String pUserId, String pNombre, String pApellP, String pApellM, String pPassword,
+            String pEmail, String pTelefono, String pDireccion, Date pFechaNac){
+        
+        Connection conn = null;
+        PreparedStatement stmt;
+        boolean succesful = true;
+        
+        try{  
+            conn = SQLServerDAOFactory.createConnection();
+        
+            //Obtener competidorId de este Equipo
+            stmt = conn.prepareStatement("EXEC spuInsertarParticipante @cedulaParticipante = "+pUserId+", @password = '"+pPassword+"',"
+										+" @nombre = '"+pNombre+"', @apellidoM = '"+pApellM+"',"
+                                                                                +" @apellidoP = '"+pApellP+"',@telefono = '"+pTelefono+"',"
+                                                                                +" @email = '"+pEmail+"',@direccion = '"+pDireccion+"',@fechaNacimiento = '12/12/12'");   
+						
+            stmt.execute();
+                      
+        } 
+        catch(SQLException e){
+            succesful = false;
+            System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+        }
+        finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }
+                catch(SQLException e){
+                    System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+                }
+            }
+        }
+        
+        return succesful;
+    }
 }

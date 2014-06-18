@@ -49,7 +49,7 @@ public class FrmCambiarPassword extends javax.swing.JFrame {
         return generatedPassword;
     }
 
-    private void changePassord(String pOldPassword, String pNewPassword){
+    private void changePassword(String pOldPassword, String pNewPassword){
        
         DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
         UsuarioDAO usuarioDAO = sqlserverFactory.getUsuarioDAO();
@@ -171,6 +171,11 @@ public class FrmCambiarPassword extends javax.swing.JFrame {
             FrmAdminOptions frm = new FrmAdminOptions(userId, encryptedPassword);
             frm.setVisible(true);
         }
+        else
+        {
+            FrmAgentOptions frm = new FrmAgentOptions(userId, encryptedPassword);
+            frm.setVisible(true);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -186,7 +191,7 @@ public class FrmCambiarPassword extends javax.swing.JFrame {
         }
         else
         {
-            changePassord(encryptedNewPassword,encryptedNewPassword);
+            changePassword(encryptedOldPassword,encryptedNewPassword);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 

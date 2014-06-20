@@ -59,6 +59,13 @@ public class SQLServerDAOFactory extends DAOFactory {
         // SQLServerPersonDAO implements UsuarioDAO
         return new SQLServerSesionDAO();
     }
+    
+    @Override
+    public CuentaDAO getCuentaDAO()
+    {
+        // SQLServerPersonDAO implements UsuarioDAO
+        return new SQLServerCuentaDAO();
+    }
 }
 
 

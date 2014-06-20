@@ -13,21 +13,12 @@ public abstract class DAOFactory {
     //public static final int SYBASE = 4;
     //public static final int MYSQL = 5;
 
-    // There will be a method for each DAO that can be created. The concrete factories will have to implement these methods.
-    /*public abstract EventoDAO getEventoDAO();
-    public abstract IndividuoDAO getIndividuoDAO();
-    public abstract AlojamientoDAO getAlojamientoDAO();
-    public abstract EntrenadorDAO getEntrenadorDAO();
-    public abstract PaisDAO getPaisDAO();
-    public abstract CompetidorDAO getCompetidorDAO();
-    public abstract EquipoDAO getEquipoDAO();
-    public abstract IntegrantesEquipoDAO getIntegrantesEquipoDAO();
-    public abstract ConsultasDAO getConsultasDAO();*/
-    
+    // There will be a method for each DAO that can be created. The concrete factories will have to implement these methods.  
     public abstract UsuarioDAO getUsuarioDAO();
     public abstract AgenteDAO getAgenteDAO();
     public abstract ParticipanteDAO getParticipanteDAO();
     public abstract SesionDAO getSesionDAO();
+    public abstract CuentaDAO getCuentaDAO();
 
     
     public static DAOFactory getDAOFactory(int whichFactory){

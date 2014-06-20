@@ -53,18 +53,20 @@
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="pfPassword" alignment="0" pref="170" max="32767" attributes="0"/>
-                  <Component id="pfPasswordR" alignment="0" pref="170" max="32767" attributes="0"/>
-                  <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtApelliP" alignment="0" pref="170" max="32767" attributes="0"/>
-                  <Component id="txtApelliM" alignment="0" pref="170" max="32767" attributes="0"/>
-                  <Component id="txtCedula" alignment="0" pref="170" max="32767" attributes="0"/>
-                  <Component id="txtTelef" alignment="1" pref="170" max="32767" attributes="0"/>
-                  <Component id="txtEmail" alignment="0" pref="170" max="32767" attributes="0"/>
-                  <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
-                  <Component id="calFechaNac" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="pfPassword" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Component id="pfPasswordR" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtApelliP" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Component id="txtApelliM" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Component id="txtCedula" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Component id="txtTelef" alignment="1" pref="170" max="32767" attributes="0"/>
+                      <Component id="txtEmail" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="calFechaNac" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="btnAceptar" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>

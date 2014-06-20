@@ -1,33 +1,34 @@
 
 package DAO;
 
+import Clases.Participante;
 import Factory.SQLServerDAOFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class SQLServerAgenteDAO implements AgenteDAO{
+public class SQLServerCuentaDAO implements CuentaDAO{
     
-    @Override
-    public int insertAgent(String pUserId, String pNombre, String pApellP, String pApellM, String pPassword){
+    @Override 
+    public boolean depositar(String pUserId, String pAgentId, String pMonto, String pMoneda){
         Connection conn = null;
         PreparedStatement stmt;
-        int rowCount = 0;
+        boolean succesful = true;
         
         try{  
             conn = SQLServerDAOFactory.createConnection();
-            
-            System.out.println("EXEC spuInsertarAgente "+pUserId+","+pPassword+","
-                                                               +pNombre+","+pApellM+","+pApellP);
+        
             //Obtener competidorId de este Equipo
-            stmt = conn.prepareStatement("EXEC spuInsertarAgente "+pUserId+","+pPassword+","
-                                                               +pNombre+","+pApellM+","+pApellP);   
-						
+            stmt = conn.prepareStatement("EXEC spuDepositarDinero @cedulaParticipante = "+pUserId+", @idAgente = "+pAgentId+","
+										+" @monto = "+pMonto+", @moneda = '"+pMoneda+"'");
+                                                                               
             stmt.execute();
                       
         } 
         catch(SQLException e){
-            rowCount = -1;
+            succesful = false;
             System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
         }
         finally{
@@ -41,6 +42,6 @@ public class SQLServerAgenteDAO implements AgenteDAO{
             }
         }
         
-        return rowCount;
+        return succesful;
     }
 }

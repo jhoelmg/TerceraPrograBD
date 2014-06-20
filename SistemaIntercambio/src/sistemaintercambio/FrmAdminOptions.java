@@ -4,6 +4,11 @@ package sistemaintercambio;
 import DAO.SesionDAO;
 import Factory.DAOFactory;
 import javax.swing.JOptionPane;
+import sistemaintercambio.FrmCambiarPassword;
+import sistemaintercambio.FrmFinalizarSesion;
+import sistemaintercambio.FrmInsertarAgente;
+import sistemaintercambio.FrmLogin;
+import sistemaintercambio.FrmSuspenderParticipante;
 
 public class FrmAdminOptions extends javax.swing.JFrame {
 

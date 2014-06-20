@@ -78,7 +78,7 @@ public class SQLServerParticipanteDAO implements ParticipanteDAO{
     
     @Override
     public boolean insertarParticipante(String pUserId, String pNombre, String pApellP, String pApellM, String pPassword,
-            String pEmail, String pTelefono, String pDireccion, Date pFechaNac){
+            String pEmail, String pTelefono, String pDireccion, String pFechaNac){
         
         Connection conn = null;
         PreparedStatement stmt;
@@ -91,7 +91,7 @@ public class SQLServerParticipanteDAO implements ParticipanteDAO{
             stmt = conn.prepareStatement("EXEC spuInsertarParticipante @cedulaParticipante = "+pUserId+", @password = '"+pPassword+"',"
 										+" @nombre = '"+pNombre+"', @apellidoM = '"+pApellM+"',"
                                                                                 +" @apellidoP = '"+pApellP+"',@telefono = '"+pTelefono+"',"
-                                                                                +" @email = '"+pEmail+"',@direccion = '"+pDireccion+"',@fechaNacimiento = '12/12/12'");   
+                                                                                +" @email = '"+pEmail+"',@direccion = '"+pDireccion+"',@fechaNacimiento = '"+pFechaNac+"'");   
 						
             stmt.execute();
                       

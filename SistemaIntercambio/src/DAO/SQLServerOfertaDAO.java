@@ -69,7 +69,40 @@ public class SQLServerOfertaDAO implements OfertaDAO{
                                                                +pMontoMax+","+pTipoCambioMin+","+pTipoCambioMax);   	
             rs = stmt.executeQuery();
             while(rs.next()){
-                ofertas.add(new Oferta(rs.getInt(1),rs.getInt(2),rs.getInt(3)));
+                ofertas.add(new Oferta(rs.getInt(1),rs.getInt(2),rs.getInt(3),Boolean.parseBoolean(pTipoOferta)));
+            }         
+        } 
+        catch(SQLException e){
+            ofertas = null;
+            System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+        }
+        finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }
+                catch(SQLException e){
+                    System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+                }
+            }
+        }
+        return ofertas;
+    }
+
+    @Override
+    public ArrayList<Oferta> listarOfertas(){
+        ArrayList<Oferta> ofertas = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt;
+        ResultSet rs;
+        
+        try{  
+            conn = SQLServerDAOFactory.createConnection();
+            
+            stmt = conn.prepareStatement("EXEC spuListarOfertas");   	
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                ofertas.add(new Oferta(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getBoolean(4)));
             }         
         } 
         catch(SQLException e){

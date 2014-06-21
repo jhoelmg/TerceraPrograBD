@@ -10,7 +10,10 @@ import DAO.SesionDAO;
 import Factory.DAOFactory;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class FrmBuscarOferta extends javax.swing.JFrame {
 
@@ -24,7 +27,34 @@ public class FrmBuscarOferta extends javax.swing.JFrame {
         userId = pUserId;      
     }
     
-    private void finalizarSesion(){
+    private void cargarTBOfertas(ArrayList<Oferta> pOfertas){
+        
+        DefaultTableModel modeloTabla = new DefaultTableModel(new Object[]{
+        "Oferta ID","Monto","Tipo Cambio"}, 0)
+        {  
+            Class[] types = new Class [] {   
+                java.lang.String.class, java.lang.String.class, java.lang.String.class};  
+
+            @Override  
+            public Class getColumnClass(int columnIndex) {  
+                return types [columnIndex];  
+            }  
+        }; 
+
+        for(Oferta oferta : pOfertas){
+            modeloTabla.addRow(new Object[]{String.valueOf(oferta.getIdOferta()),String.valueOf(oferta.getMonto()),
+                                String.valueOf(oferta.getTipoCambio())});
+        }
+        
+        tbOfertas.setModel(modeloTabla);
+        
+        //center row content
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        tbOfertas.setDefaultRenderer(String.class, centerRenderer);
+    }
+    
+    private void buscarOferta(){
         
         DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
         OfertaDAO ofertaDAO = sqlserverFactory.getOfertaDAO();
@@ -52,10 +82,8 @@ public class FrmBuscarOferta extends javax.swing.JFrame {
                         String.valueOf(montoMax), String.valueOf(tipoCambioMin), String.valueOf(tipoCambioMax));
                 if(ofertas == null)
                     JOptionPane.showMessageDialog(this, "ERROR");
-                else if(ofertas.isEmpty())
-                    JOptionPane.showMessageDialog(this, "NO RESULTS");
                 else
-                    JOptionPane.showMessageDialog(this, "RESULT");
+                    cargarTBOfertas(ofertas);
             }
             catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Digite un monto o tipo de cambio valido por favor");
@@ -86,6 +114,8 @@ public class FrmBuscarOferta extends javax.swing.JFrame {
         lblInicio7 = new javax.swing.JLabel();
         lblInicio8 = new javax.swing.JLabel();
         txtMontoMax = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbOfertas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,15 +162,36 @@ public class FrmBuscarOferta extends javax.swing.JFrame {
         lblInicio8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblInicio8.setText("Monto Max:");
 
+        tbOfertas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Oferta ID", "Monto", "Tipo Cambio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbOfertas);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblInicio)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblInicio, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -204,7 +255,9 @@ public class FrmBuscarOferta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTipoCambioMax, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblInicio7))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnBuscar))
@@ -215,14 +268,14 @@ public class FrmBuscarOferta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        finalizarSesion();
+        buscarOferta();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         FrmParticiOptions frm = new FrmParticiOptions(userId, encryptedPassword);
         frm.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
@@ -262,6 +315,7 @@ public class FrmBuscarOferta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblInicio3;
     private javax.swing.JLabel lblInicio5;
@@ -272,6 +326,7 @@ public class FrmBuscarOferta extends javax.swing.JFrame {
     private javax.swing.ButtonGroup radioGroupTipo;
     private javax.swing.JRadioButton rbtnCompra;
     private javax.swing.JRadioButton rbtnVenta;
+    private javax.swing.JTable tbOfertas;
     private javax.swing.JTextField txtMontoMax;
     private javax.swing.JTextField txtMontoMin;
     private javax.swing.JTextField txtTipoCambioMax;

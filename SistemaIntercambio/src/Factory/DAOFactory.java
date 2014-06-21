@@ -20,6 +20,7 @@ public abstract class DAOFactory {
     public abstract SesionDAO getSesionDAO();
     public abstract CuentaDAO getCuentaDAO();
     public abstract OfertaDAO getOfertaDAO();
+    public abstract GeneralDAO getGeneralDAO();
     
     public static DAOFactory getDAOFactory(int whichFactory){
 

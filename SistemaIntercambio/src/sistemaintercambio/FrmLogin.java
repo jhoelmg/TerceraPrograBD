@@ -35,7 +35,11 @@ public class FrmLogin extends javax.swing.JFrame {
                 case "Agente":
                     FrmAgentOptions frmAgent = new FrmAgentOptions(pUserId, encryptedPassword);
                     frmAgent.setVisible(true);
-                    break;          
+                    break;   
+                case "Participante":
+                    FrmParticiOptions frmPartici = new FrmParticiOptions(pUserId, encryptedPassword);
+                    frmPartici.setVisible(true);
+                    break; 
             }
             this.setVisible(false);
         }

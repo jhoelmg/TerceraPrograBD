@@ -28,6 +28,8 @@ public class SQLServerParticipanteDAO implements ParticipanteDAO{
                 listaParticipantes.add(new Participante(rs.getInt("cedula"), rs.getString("nombre"), 
                         rs.getString("apellidoP"), rs.getString("apellidoM")));
             }
+            
+            rs.close();
         } 
         catch(SQLException e){
             System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());

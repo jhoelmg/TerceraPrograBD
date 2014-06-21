@@ -6,11 +6,11 @@ import Factory.DAOFactory;
 import javax.swing.JOptionPane;
 
 
-public class FrmDepositarDinero extends javax.swing.JFrame {
+public class FrmRetirarDinero extends javax.swing.JFrame {
 
     String encryptedPassword, userId;
     
-    public FrmDepositarDinero(String pUserId, String pEncryptedPassword) {
+    public FrmRetirarDinero(String pUserId, String pEncryptedPassword) {
         initComponents();
         setLocationRelativeTo(null);
         
@@ -18,7 +18,7 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
         userId = pUserId;
     }
     
-    private void depositar(){
+    private void retirar(){
         double monto;
         String moneda;
         if(txtCedula.getText().trim().length() != 0 || txtMonto.getText().trim().length() != 0){
@@ -30,15 +30,15 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
                 monto = Double.parseDouble(txtMonto.getText());
                 DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
                 CuentaDAO cuentaDAO = sqlserverFactory.getCuentaDAO();
-                boolean result = cuentaDAO.depositar(txtCedula.getText(), userId, String.valueOf(monto), moneda);
+                boolean result = cuentaDAO.retirar(txtCedula.getText(), userId, String.valueOf(monto), moneda);
                 if(result)
-                    JOptionPane.showMessageDialog(null, "Deposito correctamente efectuado");
+                    JOptionPane.showMessageDialog(null, "Retiro correctamente efectuado");
                 else
-                    JOptionPane.showMessageDialog(null, "Hubo un problema al efectuar el deposito"); 
+                    JOptionPane.showMessageDialog(null, "Su cuenta no tiene suficiente saldo"); 
             }
             catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Digite un monto valido por favor");
-            } 
+            }
         }
         else
             JOptionPane.showMessageDialog(this, "Por favor llene todos los espacios solicitados");
@@ -51,7 +51,7 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
         radioGroupMoneda = new javax.swing.ButtonGroup();
         lblInicio = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        btnDepositar = new javax.swing.JButton();
+        btnRetirar = new javax.swing.JButton();
         txtCedula = new javax.swing.JTextField();
         lblInicio4 = new javax.swing.JLabel();
         txtMonto = new javax.swing.JTextField();
@@ -62,7 +62,7 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblInicio.setText("Depositar");
+        lblInicio.setText("Retirar");
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -73,12 +73,12 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
             }
         });
 
-        btnDepositar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnDepositar.setText("Depositar");
-        btnDepositar.setToolTipText("");
-        btnDepositar.addActionListener(new java.awt.event.ActionListener() {
+        btnRetirar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnRetirar.setText("Retirar");
+        btnRetirar.setToolTipText("");
+        btnRetirar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDepositarActionPerformed(evt);
+                btnRetirarActionPerformed(evt);
             }
         });
 
@@ -122,7 +122,7 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblInicio4)
                                 .addGap(18, 18, 18)
@@ -152,7 +152,7 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
                     .addComponent(rbtnDolares))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -166,10 +166,10 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
         // TODO add your handling code here:
-        depositar();
-    }//GEN-LAST:event_btnDepositarActionPerformed
+        retirar();
+    }//GEN-LAST:event_btnRetirarActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         // TODO add your handling code here:
@@ -198,26 +198,26 @@ public class FrmDepositarDinero extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmDepositarDinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRetirarDinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmDepositarDinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRetirarDinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmDepositarDinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRetirarDinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmDepositarDinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRetirarDinero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmDepositarDinero("","").setVisible(true);
+                new FrmRetirarDinero("","").setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnDepositar;
+    private javax.swing.JButton btnRetirar;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblInicio4;
     private javax.swing.JLabel lblInicio5;

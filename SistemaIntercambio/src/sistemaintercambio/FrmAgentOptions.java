@@ -71,6 +71,11 @@ public class FrmAgentOptions extends javax.swing.JFrame {
         btnRetirar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnRetirar.setText("Retirar");
         btnRetirar.setToolTipText("");
+        btnRetirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetirarActionPerformed(evt);
+            }
+        });
 
         btnDepositar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnDepositar.setText("Depositar");
@@ -161,6 +166,12 @@ public class FrmAgentOptions extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnDepositarActionPerformed
+
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
+        FrmRetirarDinero frm = new FrmRetirarDinero(userId, encryptedPassword);
+        frm.setVisible(true);
+        this.setVisible(false);                
+    }//GEN-LAST:event_btnRetirarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

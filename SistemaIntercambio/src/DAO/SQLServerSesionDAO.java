@@ -31,7 +31,9 @@ public class SQLServerSesionDAO implements SesionDAO{
             
             while(rs.next()){
                 sesionID = rs.getInt(1);
-            }            
+            }     
+            
+            rs.close();
         } 
         catch(SQLException e){
             sesionID = -1;
@@ -66,6 +68,8 @@ public class SQLServerSesionDAO implements SesionDAO{
             while(rs.next()){
                 listaSesiones.add(new Sesion(rs.getInt("idSesion"),rs.getDate("fecha")));
             }
+            
+            rs.close();
         } 
         catch(SQLException e){
             System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());

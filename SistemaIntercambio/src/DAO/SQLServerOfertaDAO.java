@@ -1,41 +1,42 @@
 
 package DAO;
 
+import Clases.Oferta;
 import Factory.SQLServerDAOFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class SQLServerUsuarioDAO implements UsuarioDAO {
+public class SQLServerOfertaDAO implements OfertaDAO{
     
-    public SQLServerUsuarioDAO(){ }
-      
     @Override
-    public String checkUser(String pUserId, String pUserPassword){
-        
+    public boolean crearOferta(String pUserId, String pMonto, String pTipo, String pTipoCambio, String pSesionId){
         Connection conn = null;
         PreparedStatement stmt;
         ResultSet rs;
-        String userType = "";
+        boolean succesful = true;
+        boolean valido = true;
         
         try{  
             conn = SQLServerDAOFactory.createConnection();
             
-            //Obtener competidorId de este Equipo
-            stmt = conn.prepareStatement("DECLARE @userType varchar(50) "
-                                        + "EXEC spuCheckLogin "+pUserId+", '"+pUserPassword+"', @userType OUTPUT "
-                                        + "SELECT @userType ");                  
+            stmt = conn.prepareStatement("DECLARE @exitoso bit "
+                                       + "EXEC spuRealizarOferta "+pUserId+","+pMonto+",'"
+                                                               +pTipo+"',"+pTipoCambio+","+pSesionId+","
+                                                               + "@exitoso = @exitoso OUTPUT"
+                                       +" SELECT @exitoso");   	
             rs = stmt.executeQuery();
-            
             while(rs.next()){
-                userType = rs.getString(1);
-            }        
+                valido = rs.getBoolean(1);
+            }
             
-            rs.close();
+            if(!valido)
+                succesful = false;            
         } 
         catch(SQLException e){
-            userType = "";
+            succesful = false;
             System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
         }
         finally{
@@ -49,25 +50,30 @@ public class SQLServerUsuarioDAO implements UsuarioDAO {
             }
         }
         
-        return userType;
+        return succesful;
     }
     
     @Override
-    public void changePassword(String pUserId, String pNewPassword){
+    public ArrayList<Oferta> buscarOferta(String pTipoOferta, String pMontoMin, String pMontoMax, 
+            String pTipoCambioMin, String pTipoCambioMax){
         
+        ArrayList<Oferta> ofertas = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt;
+        ResultSet rs;
+        
         try{  
             conn = SQLServerDAOFactory.createConnection();
             
-            //Obtener competidorId de este Equipo
-            stmt = conn.prepareStatement("EXEC spuChangePassword @userId = "+pUserId+", "
-                                                              + "@newPassword = '"+pNewPassword+"' ");   
-						
-            stmt.execute();
-                       
+            stmt = conn.prepareStatement("EXEC spuBuscarOferta "+pTipoOferta+","+pMontoMin+","
+                                                               +pMontoMax+","+pTipoCambioMin+","+pTipoCambioMax);   	
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                ofertas.add(new Oferta(rs.getInt(1),rs.getInt(2),rs.getInt(3)));
+            }         
         } 
         catch(SQLException e){
+            ofertas = null;
             System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
         }
         finally{
@@ -80,7 +86,6 @@ public class SQLServerUsuarioDAO implements UsuarioDAO {
                 }
             }
         }
+        return ofertas;
     }
-
 }
-

@@ -17,9 +17,6 @@ public class SQLServerAgenteDAO implements AgenteDAO{
         try{  
             conn = SQLServerDAOFactory.createConnection();
             
-            System.out.println("EXEC spuInsertarAgente "+pUserId+","+pPassword+","
-                                                               +pNombre+","+pApellM+","+pApellP);
-            //Obtener competidorId de este Equipo
             stmt = conn.prepareStatement("EXEC spuInsertarAgente "+pUserId+","+pPassword+","
                                                                +pNombre+","+pApellM+","+pApellP);   
 						

@@ -1,15 +1,6 @@
 
 package sistemaintercambio;
 
-import DAO.SesionDAO;
-import Factory.DAOFactory;
-import javax.swing.JOptionPane;
-import sistemaintercambio.FrmCambiarPassword;
-import sistemaintercambio.FrmFinalizarSesion;
-import sistemaintercambio.FrmInsertarAgente;
-import sistemaintercambio.FrmLogin;
-import sistemaintercambio.FrmSuspenderParticipante;
-
 public class FrmParticiOptions extends javax.swing.JFrame {
 
     String encryptedPassword, userId;
@@ -20,20 +11,6 @@ public class FrmParticiOptions extends javax.swing.JFrame {
         
         encryptedPassword = pEncryptedPassword;
         userId = pUserId;
-    }
-    
-    private void iniciarSesion(){
-        
-        DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
-        SesionDAO sesionDAO = sqlserverFactory.getSesionDAO();
-        int sesionID = sesionDAO.createSesion(userId);
-        
-        if(sesionID != -1)
-            JOptionPane.showMessageDialog(this, "Sesion "+sesionID+" creada exitosamente");
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Hubo un problema al crear la sesion");
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -138,26 +115,28 @@ public class FrmParticiOptions extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListarOfertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarOfertasActionPerformed
-      
+      FrmListarOfertas frm = new FrmListarOfertas(userId, encryptedPassword);
+      frm.setVisible(true);
+      this.dispose();
     }//GEN-LAST:event_btnListarOfertasActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         FrmLogin frm = new FrmLogin();
         frm.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnRealizarOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarOfertaActionPerformed
         FrmRealizarOferta frm = new FrmRealizarOferta(userId, encryptedPassword);
         frm.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnRealizarOfertaActionPerformed
 
     private void btnBuscarOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOfertaActionPerformed
         FrmBuscarOferta frm = new FrmBuscarOferta(userId, encryptedPassword);
         frm.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnBuscarOfertaActionPerformed
 
     public static void main(String args[]) {

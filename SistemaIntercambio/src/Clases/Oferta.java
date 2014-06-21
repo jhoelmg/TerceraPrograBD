@@ -5,11 +5,17 @@ public class Oferta {
     double tipoCambio;
     double monto;
     int  idOferta;
+    String tipoOferta;
 
-    public Oferta(int idOferta, double monto, double tipoCambio ) {
+    public Oferta(int idOferta, double monto, double tipoCambio, boolean pTipoOferta) {
         this.tipoCambio = tipoCambio;
         this.monto = monto;
         this.idOferta = idOferta;
+        
+        if(pTipoOferta)
+            tipoOferta = "Compra";
+        else
+            tipoOferta = "Venta";
     }
 
     public double getTipoCambio() {
@@ -34,5 +40,13 @@ public class Oferta {
 
     public void setIdOferta(int idOferta) {
         this.idOferta = idOferta;
+    }
+
+    public String getTipoOferta() {
+        return tipoOferta;
+    }
+
+    public void setTipoOferta(String tipoOferta) {
+        this.tipoOferta = tipoOferta;
     }
 }

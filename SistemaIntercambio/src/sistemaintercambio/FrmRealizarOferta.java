@@ -256,9 +256,9 @@ public class FrmRealizarOferta extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        FrmAdminOptions frm = new FrmAdminOptions(userId, encryptedPassword);
+        FrmParticiOptions frm = new FrmParticiOptions(userId, encryptedPassword);
         frm.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void cmbIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdActionPerformed

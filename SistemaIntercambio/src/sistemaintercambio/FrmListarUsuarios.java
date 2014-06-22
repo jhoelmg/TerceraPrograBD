@@ -20,12 +20,13 @@ public class FrmListarUsuarios extends javax.swing.JFrame {
         
         encryptedPassword = pEncryptedPassword;
         userId = pUserId; 
+        actualizarTabla();
     }
     
     private void cargarTBParticipantes(ArrayList<Usuario> pUsuarios){
         
         DefaultTableModel modeloTabla = new DefaultTableModel(new Object[]{
-        "Participante","Colnes","Congelamiento","Dolares","Congelamiento"}, 0)
+        "Participante","Colones","Congelamiento","Dolares","Congelamiento"}, 0)
         {  
             Class[] types = new Class [] {   
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class};  

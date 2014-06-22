@@ -22,6 +22,7 @@ public abstract class DAOFactory {
     public abstract OfertaDAO getOfertaDAO();
     public abstract GeneralDAO getGeneralDAO();
     public abstract TratoDAO getTratoDAO();
+    public abstract EstadisticaTratoDAO getEstadisticasTratoDAO();
     
     
     public static DAOFactory getDAOFactory(int whichFactory){

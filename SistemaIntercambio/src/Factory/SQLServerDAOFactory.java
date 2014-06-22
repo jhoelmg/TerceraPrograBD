@@ -85,6 +85,11 @@ public class SQLServerDAOFactory extends DAOFactory {
     public TratoDAO getTratoDAO() {
         return new SQLServerTratoDAO();
     }
+
+    @Override
+    public EstadisticaTratoDAO getEstadisticasTratoDAO() {
+        return new SQLServerEstadisticaTratoDAO();
+    }
     
 }
 

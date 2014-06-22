@@ -19,7 +19,7 @@ public class FrmParticiOptions extends javax.swing.JFrame {
 
         jButton6 = new javax.swing.JButton();
         lblInicio = new javax.swing.JLabel();
-        btnUltimasNegociaciones = new javax.swing.JButton();
+        btnUltimosTratos = new javax.swing.JButton();
         btnListarOfertas = new javax.swing.JButton();
         btnBuscarOferta = new javax.swing.JButton();
         btnRealizarOferta = new javax.swing.JButton();
@@ -33,8 +33,9 @@ public class FrmParticiOptions extends javax.swing.JFrame {
         lblInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblInicio.setText("Bienvenido Participante");
 
-        btnUltimasNegociaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnUltimasNegociaciones.setText("Ultimas Negociaciones");
+        btnUltimosTratos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnUltimosTratos.setText("Ultimos Tratos");
+        btnUltimosTratos.setActionCommand("Ultimos Tratos");
 
         btnListarOfertas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnListarOfertas.setText("Listar Ofertas");
@@ -80,17 +81,17 @@ public class FrmParticiOptions extends javax.swing.JFrame {
                         .addComponent(lblInicio)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 15, Short.MAX_VALUE)
+                        .addGap(0, 13, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSalir)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnListarOfertas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBuscarOferta, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnBuscarOferta, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                    .addComponent(btnListarOfertas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnRealizarOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnUltimasNegociaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btnUltimosTratos, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                    .addComponent(btnRealizarOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
@@ -100,7 +101,7 @@ public class FrmParticiOptions extends javax.swing.JFrame {
                 .addComponent(lblInicio)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUltimasNegociaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUltimosTratos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListarOfertas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,7 +176,7 @@ public class FrmParticiOptions extends javax.swing.JFrame {
     private javax.swing.JButton btnListarOfertas;
     private javax.swing.JButton btnRealizarOferta;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnUltimasNegociaciones;
+    private javax.swing.JButton btnUltimosTratos;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel lblInicio;
     // End of variables declaration//GEN-END:variables

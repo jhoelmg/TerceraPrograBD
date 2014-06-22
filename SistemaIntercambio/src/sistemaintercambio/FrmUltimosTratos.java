@@ -1,8 +1,8 @@
 
 package sistemaintercambio;
 
-import Clases.Oferta;
-import DAO.OfertaDAO;
+import Clases.Trato;
+import DAO.TratoDAO;
 import Factory.DAOFactory;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -23,10 +23,10 @@ public class FrmUltimosTratos extends javax.swing.JFrame {
         actualizarTabla();
     }
     
-    private void cargarTBTratos(ArrayList<Oferta> pOfertas){
+    private void cargarTBTratos(ArrayList<Trato> pTratos){
         
         DefaultTableModel modeloTabla = new DefaultTableModel(new Object[]{
-        "Oferta ID","Monto","Tipo Cambio","Tipo Oferta"}, 0)
+        "Trato ID","Monto Dolares","Monto Colones","Tipo Cambio"}, 0)
         {  
             Class[] types = new Class [] {   
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class};  
@@ -37,9 +37,9 @@ public class FrmUltimosTratos extends javax.swing.JFrame {
             }  
         }; 
 
-        for(Oferta oferta : pOfertas){
-            modeloTabla.addRow(new Object[]{String.valueOf(oferta.getIdOferta()),String.valueOf(oferta.getMonto()),
-                                String.valueOf(oferta.getTipoCambio()), oferta.getTipoOferta()});
+        for(Trato trato : pTratos){
+            modeloTabla.addRow(new Object[]{trato.getTratoId(),trato.getMontoDolares(),
+                                trato.getMontoColones(), trato.getTipoCambio()});
         }
         
         tbTratos.setModel(modeloTabla);
@@ -53,15 +53,15 @@ public class FrmUltimosTratos extends javax.swing.JFrame {
     private void actualizarTabla(){
         
         DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
-        OfertaDAO ofertaDAO = sqlserverFactory.getOfertaDAO();
+        TratoDAO tratoDAO = sqlserverFactory.getTratoDAO();
         
-        ArrayList<Oferta> ofertas = null;
+        ArrayList<Trato> tratos = null;
         
-        ofertas = ofertaDAO.listarOfertas();
-        if(ofertas == null)
+        tratos = tratoDAO.verUltimosTratos();
+        if(tratos == null)
             JOptionPane.showMessageDialog(this, "ERROR");
         else
-            cargarTBTratos(ofertas);
+            cargarTBTratos(tratos);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -99,7 +99,7 @@ public class FrmUltimosTratos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Oferta ID", "Monto", "Tipo Cambio", "Tipo"
+                "Trato ID", "Monto Dolares", "Monto Colones", "Tipo Cambio"
             }
         ) {
             Class[] types = new Class [] {

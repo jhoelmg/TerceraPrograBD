@@ -272,7 +272,7 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
     private void btnListarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarUsuariosActionPerformed
         // TODO add your handling code here:
-        FrmListarUsuarios frm  = new FrmListarUsuarios(userId, encryptedPassword);
+        FrmListarUsuarios frm = new FrmListarUsuarios(userId, encryptedPassword);
         frm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnListarUsuariosActionPerformed

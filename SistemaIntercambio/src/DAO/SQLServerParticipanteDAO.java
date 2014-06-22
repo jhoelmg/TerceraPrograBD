@@ -129,8 +129,8 @@ public class SQLServerParticipanteDAO implements ParticipanteDAO{
             rs = stmt.executeQuery();
                         
             while(rs.next()){
-                listaUsuarios.add(new Usuario(rs.getInt(1), rs.getString(2), 
-                        rs.getString(3), rs.getString(5), rs.getString(5)));
+                listaUsuarios.add(new Usuario(rs.getString(1), rs.getString(2), 
+                        rs.getString(3), rs.getString(4), rs.getString(5)));
             }
             
             rs.close();

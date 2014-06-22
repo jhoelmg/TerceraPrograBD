@@ -3,13 +3,13 @@ package Clases;
 
 public class Usuario {
  
-    int usuarioId;
+    String usuarioId;
     String colones;
     String congeladoColones;
     String dolares;
     String congeladoDolares;
 
-    public Usuario(int usuarioId, String colones, String congeladoColones, String dolares, String congeladoDolares) {
+    public Usuario(String usuarioId, String colones, String congeladoColones, String dolares, String congeladoDolares) {
         this.usuarioId = usuarioId;
         this.colones = colones;
         this.congeladoColones = congeladoColones;
@@ -17,11 +17,11 @@ public class Usuario {
         this.congeladoDolares = congeladoDolares;
     }
 
-    public int getUsuarioId() {
+    public String getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(int usuarioId) {
+    public void setUsuarioId(String usuarioId) {
         this.usuarioId = usuarioId;
     }
 

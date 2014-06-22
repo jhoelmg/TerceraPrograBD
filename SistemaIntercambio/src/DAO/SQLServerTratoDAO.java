@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package DAO;
 
-import Clases.Oferta;
 import Clases.Trato;
 import Factory.SQLServerDAOFactory;
 import java.sql.Connection;
@@ -15,10 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author JuanCarlos
- */
 public class SQLServerTratoDAO implements TratoDAO{
 
     @Override
@@ -67,8 +57,8 @@ public class SQLServerTratoDAO implements TratoDAO{
             stmt = conn.prepareStatement("EXEC spuVisualizarUltimosTratos");   	
             rs = stmt.executeQuery();
             while(rs.next()){
-                ultimasTratos.add(new Trato(String.valueOf(rs.getInt(2)),String.valueOf(rs.getInt(3)),
-                        String.valueOf(rs.getInt(4)),String.valueOf(rs.getInt(1))));
+                ultimasTratos.add(new Trato(String.valueOf(rs.getInt(2)),rs.getString(3),
+                        rs.getString(4),rs.getString(1)));
             }         
         } 
         catch(SQLException e){

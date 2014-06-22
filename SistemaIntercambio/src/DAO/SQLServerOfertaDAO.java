@@ -69,7 +69,7 @@ public class SQLServerOfertaDAO implements OfertaDAO{
                                                                +pMontoMax+","+pTipoCambioMin+","+pTipoCambioMax);   	
             rs = stmt.executeQuery();
             while(rs.next()){
-                ofertas.add(new Oferta(rs.getInt(1),rs.getInt(2),rs.getInt(3),Boolean.parseBoolean(pTipoOferta)));
+                ofertas.add(new Oferta(rs.getInt(1),rs.getString(2),rs.getString(3),Boolean.parseBoolean(pTipoOferta)));
             }         
         } 
         catch(SQLException e){
@@ -103,7 +103,7 @@ public class SQLServerOfertaDAO implements OfertaDAO{
                     + "INSERT INTO #temp1  EXEC spuListarOfertas SELECT * FROM #temp1 ORDER BY "+ordenado+" ASC");   	
             rs = stmt.executeQuery();
             while(rs.next()){
-                ofertas.add(new Oferta(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getBoolean(4)));
+                ofertas.add(new Oferta(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBoolean(4)));
             }         
         } 
         catch(SQLException e){

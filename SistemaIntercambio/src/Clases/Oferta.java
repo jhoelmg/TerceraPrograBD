@@ -2,12 +2,12 @@
 package Clases;
 
 public class Oferta {
-    double tipoCambio;
-    double monto;
+    String tipoCambio;
+    String monto;
     int  idOferta;
     String tipoOferta;
 
-    public Oferta(int idOferta, double monto, double tipoCambio, boolean pTipoOferta) {
+    public Oferta(int idOferta, String monto, String tipoCambio, boolean pTipoOferta) {
         this.tipoCambio = tipoCambio;
         this.monto = monto;
         this.idOferta = idOferta;
@@ -18,19 +18,19 @@ public class Oferta {
             tipoOferta = "Venta";
     }
 
-    public double getTipoCambio() {
+    public String getTipoCambio() {
         return tipoCambio;
     }
 
-    public void setTipoCambio(double tipoCambio) {
+    public void setTipoCambio(String tipoCambio) {
         this.tipoCambio = tipoCambio;
     }
 
-    public double getMonto() {
+    public String getMonto() {
         return monto;
     }
 
-    public void setMonto(double monto) {
+    public void setMonto(String monto) {
         this.monto = monto;
     }
 

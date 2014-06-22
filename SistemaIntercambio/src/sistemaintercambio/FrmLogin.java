@@ -177,7 +177,7 @@ public class FrmLogin extends javax.swing.JFrame {
         if((caracter<'0' || caracter>'9')){
            evt.consume();
         }
-        if(txfUsuario.getText().trim().length() > 9)
+        if(txfUsuario.getText().trim().length() > 8)
             evt.consume();
     }//GEN-LAST:event_txfUsuarioKeyTyped
 

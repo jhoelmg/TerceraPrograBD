@@ -2,9 +2,9 @@
 package DAO;
 
 import Clases.Participante;
+import Clases.Usuario;
 import Factory.SQLServerDAOFactory;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -114,5 +114,40 @@ public class SQLServerParticipanteDAO implements ParticipanteDAO{
         }
         
         return succesful;
+    }
+
+    @Override
+    public ArrayList<Usuario>  listarUsuarios(){
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt;
+        ResultSet rs;
+        
+        try{  
+            conn = SQLServerDAOFactory.createConnection();
+            stmt = conn.prepareStatement("EXEC spuListarUsuarios");
+            rs = stmt.executeQuery();
+                        
+            while(rs.next()){
+                listaUsuarios.add(new Usuario(rs.getInt(1), rs.getString(2), 
+                        rs.getString(3), rs.getString(5), rs.getString(5)));
+            }
+            
+            rs.close();
+        } 
+        catch(SQLException e){
+            System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+        }
+        finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }
+                catch(SQLException e){
+                    System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+                }
+            }
+        }
+        return listaUsuarios;
     }
 }

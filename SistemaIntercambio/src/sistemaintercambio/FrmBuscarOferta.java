@@ -2,14 +2,9 @@
 package sistemaintercambio;
 
 import Clases.Oferta;
-import Clases.Participante;
-import Clases.Sesion;
 import DAO.OfertaDAO;
-import DAO.ParticipanteDAO;
-import DAO.SesionDAO;
 import Factory.DAOFactory;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;

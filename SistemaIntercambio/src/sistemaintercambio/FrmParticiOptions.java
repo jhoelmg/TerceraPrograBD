@@ -36,6 +36,11 @@ public class FrmParticiOptions extends javax.swing.JFrame {
         btnUltimosTratos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnUltimosTratos.setText("Ultimos Tratos");
         btnUltimosTratos.setActionCommand("Ultimos Tratos");
+        btnUltimosTratos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimosTratosActionPerformed(evt);
+            }
+        });
 
         btnListarOfertas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnListarOfertas.setText("Listar Ofertas");
@@ -139,6 +144,13 @@ public class FrmParticiOptions extends javax.swing.JFrame {
         frm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarOfertaActionPerformed
+
+    private void btnUltimosTratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimosTratosActionPerformed
+        // TODO add your handling code here:
+        FrmUltimosTratos frm = new FrmUltimosTratos(userId, encryptedPassword);
+        frm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnUltimosTratosActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

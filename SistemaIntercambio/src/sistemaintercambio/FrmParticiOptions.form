@@ -101,6 +101,9 @@
         <Property name="text" type="java.lang.String" value="Ultimos Tratos"/>
         <Property name="actionCommand" type="java.lang.String" value="Ultimos Tratos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUltimosTratosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnListarOfertas">
       <Properties>

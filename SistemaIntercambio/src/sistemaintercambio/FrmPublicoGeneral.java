@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package sistemaintercambio;
 
 import DAO.CuentaDAO;
@@ -11,17 +5,12 @@ import DAO.GeneralDAO;
 import Factory.DAOFactory;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author JuanCarlos
- */
+
 public class FrmPublicoGeneral extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmPublicoGeneral
-     */
     public FrmPublicoGeneral() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     private void verEstadisticasPublicoGeneral(){

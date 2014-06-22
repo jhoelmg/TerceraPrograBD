@@ -264,6 +264,10 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
     private void btnListarPizarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPizarraActionPerformed
         // TODO add your handling code here:
+        FrmListarPizarra frm = new FrmListarPizarra(userId, encryptedPassword);
+        frm.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btnListarPizarraActionPerformed
 
     private void btnListarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarUsuariosActionPerformed

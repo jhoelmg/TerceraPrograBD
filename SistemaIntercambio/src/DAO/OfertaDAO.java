@@ -8,5 +8,5 @@ public interface OfertaDAO {
     public boolean crearOferta(String pUserId, String pMonto, String pTipo, String pTipoCambio, String pSesionId);
     public ArrayList<Oferta> buscarOferta(String pTipoOferta, String pMontoMin, String pMontoMax, 
             String pTipoCambioMin, String pTipoCambioMax);
-    public ArrayList<Oferta> listarOfertas();
+    public ArrayList<Oferta> listarOfertas(String ordenado);
 }

@@ -10,11 +10,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class FrmListarOfertas extends javax.swing.JFrame {
+public class FrmListarPizarra extends javax.swing.JFrame {
 
     String encryptedPassword, userId;
     
-    public FrmListarOfertas(String pUserId, String pEncryptedPassword) {
+    public FrmListarPizarra(String pUserId, String pEncryptedPassword) {
         initComponents();
         setLocationRelativeTo(null);
         
@@ -54,10 +54,10 @@ public class FrmListarOfertas extends javax.swing.JFrame {
         
         DAOFactory sqlserverFactory = DAOFactory.getDAOFactory(DAOFactory.SQLSERVER);
         OfertaDAO ofertaDAO = sqlserverFactory.getOfertaDAO();
-        
+        String tipoOrdenado = cmbTipoOrdenado.getSelectedItem().toString();
         ArrayList<Oferta> ofertas = null;
         
-        ofertas = ofertaDAO.listarOfertas("idOferta");
+        ofertas = ofertaDAO.listarOfertas(tipoOrdenado);
         if(ofertas == null)
             JOptionPane.showMessageDialog(this, "ERROR");
         else
@@ -72,11 +72,13 @@ public class FrmListarOfertas extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbOfertas = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        cmbTipoOrdenado = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblInicio.setText("Ofertas Activas");
+        lblInicio.setText("Listado Pizarra");
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -112,23 +114,40 @@ public class FrmListarOfertas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbOfertas);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Ordenado por:");
+
+        cmbTipoOrdenado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "idOferta", "monto", "tipoOferta", "tipoCambio" }));
+        cmbTipoOrdenado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoOrdenadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblInicio)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(28, 28, 28)
+                        .addComponent(cmbTipoOrdenado, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +155,11 @@ public class FrmListarOfertas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblInicio)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTipoOrdenado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnActualizar)
@@ -153,10 +176,14 @@ public class FrmListarOfertas extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        FrmParticiOptions frm = new FrmParticiOptions(userId, encryptedPassword);
+        FrmAdminOptions frm = new FrmAdminOptions(userId, encryptedPassword);
         frm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void cmbTipoOrdenadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoOrdenadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoOrdenadoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -172,26 +199,28 @@ public class FrmListarOfertas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmListarOfertas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListarPizarra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmListarOfertas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListarPizarra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmListarOfertas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListarPizarra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmListarOfertas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmListarPizarra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmListarOfertas("","").setVisible(true);
+                new FrmListarPizarra("","").setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JComboBox cmbTipoOrdenado;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JTable tbOfertas;

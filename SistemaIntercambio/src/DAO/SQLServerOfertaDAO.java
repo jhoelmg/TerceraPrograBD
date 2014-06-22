@@ -90,7 +90,7 @@ public class SQLServerOfertaDAO implements OfertaDAO{
     }
 
     @Override
-    public ArrayList<Oferta> listarOfertas(){
+    public ArrayList<Oferta> listarOfertas(String ordenado){
         ArrayList<Oferta> ofertas = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt;
@@ -99,7 +99,8 @@ public class SQLServerOfertaDAO implements OfertaDAO{
         try{  
             conn = SQLServerDAOFactory.createConnection();
             
-            stmt = conn.prepareStatement("EXEC spuListarOfertas");   	
+            stmt = conn.prepareStatement("SET NOCOUNT ON CREATE TABLE #temp1(idOferta int,monto money,tipoCambio money,tipoOferta bit)"
+                    + "INSERT INTO #temp1  EXEC spuListarOfertas SELECT * FROM #temp1 ORDER BY "+ordenado+" ASC");   	
             rs = stmt.executeQuery();
             while(rs.next()){
                 ofertas.add(new Oferta(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getBoolean(4)));

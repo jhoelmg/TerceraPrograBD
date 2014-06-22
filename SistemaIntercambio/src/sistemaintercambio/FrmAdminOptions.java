@@ -249,6 +249,9 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
     private void btnVerEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEstadisticasActionPerformed
         // TODO add your handling code here:
+        FrmVerEstadisticas fmr = new FrmVerEstadisticas(userId, encryptedPassword);
+        fmr.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_btnVerEstadisticasActionPerformed
 

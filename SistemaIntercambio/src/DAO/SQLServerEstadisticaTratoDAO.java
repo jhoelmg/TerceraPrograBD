@@ -1,0 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package DAO;
+
+import Clases.EstadisticaTrato;
+import Clases.Trato;
+import Factory.SQLServerDAOFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author JuanCarlos
+ */
+public class SQLServerEstadisticaTratoDAO implements EstadisticaTratoDAO{
+
+    @Override
+    public EstadisticaTrato verEstadisticas(String idSesion) {
+        EstadisticaTrato estadisticaTratos = null;
+        Connection conn = null;
+        PreparedStatement stmt;
+        ResultSet rs;
+        
+        try{  
+            conn = SQLServerDAOFactory.createConnection();
+            
+            stmt = conn.prepareStatement("EXEC spuVisualizarEstadisticas "+idSesion);   	
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                estadisticaTratos = new EstadisticaTrato(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+            }         
+        } 
+        catch(SQLException e){
+            estadisticaTratos = null;
+            System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+        }
+        finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }
+                catch(SQLException e){
+                    System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+                }
+            }
+        }
+        return estadisticaTratos;
+    }
+    
+}

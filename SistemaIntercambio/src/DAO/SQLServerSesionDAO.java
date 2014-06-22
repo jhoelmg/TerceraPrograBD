@@ -96,7 +96,7 @@ public class SQLServerSesionDAO implements SesionDAO{
         
         try{  
             conn = SQLServerDAOFactory.createConnection();
-            stmt = conn.prepareStatement("EXEC spuFinalizarSesion "+sesionID);
+            stmt = conn.prepareStatement("EXEC spuTerminarSesion "+sesionID);
             stmt.execute();
                   
         } 

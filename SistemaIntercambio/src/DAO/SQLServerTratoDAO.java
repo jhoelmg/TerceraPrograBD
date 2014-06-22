@@ -34,7 +34,7 @@ public class SQLServerTratoDAO implements TratoDAO{
             stmt = conn.prepareStatement("EXEC spuVisualizarTratos "+idSesion);   	
             rs = stmt.executeQuery();
             while(rs.next()){
-                tratos.add(new Trato(rs.getString(1),rs.getString(2),rs.getString(3)));
+                tratos.add(new Trato(rs.getString(1),rs.getString(2),rs.getString(3),""));
             }         
         } 
         catch(SQLException e){
@@ -54,4 +54,37 @@ public class SQLServerTratoDAO implements TratoDAO{
         return tratos;
     }
     
+    @Override
+    public ArrayList<Trato> verUltimosTratos(){
+        ArrayList<Trato> ultimasTratos = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt;
+        ResultSet rs;
+        
+        try{  
+            conn = SQLServerDAOFactory.createConnection();
+            
+            stmt = conn.prepareStatement("EXEC spuVisualizarUltimosTratos");   	
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                ultimasTratos.add(new Trato(String.valueOf(rs.getInt(2)),String.valueOf(rs.getInt(3)),
+                        String.valueOf(rs.getInt(4)),String.valueOf(rs.getInt(1))));
+            }         
+        } 
+        catch(SQLException e){
+            ultimasTratos = null;
+            System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+        }
+        finally{
+            if(conn != null){
+                try{
+                    conn.close();
+                }
+                catch(SQLException e){
+                    System.out.println("Message: " + e.getMessage() + "\n" + "Code: " + e.getErrorCode());
+                }
+            }
+        }
+        return ultimasTratos;
+    }
 }

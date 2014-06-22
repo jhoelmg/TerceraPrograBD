@@ -14,11 +14,13 @@ public class Trato {
     private String montoDolares;
     private String montoColones;
     private String tipoCambio;
+    private String tratoId;
 
-    public Trato(String montoDolares, String montoColones, String tipoCambio) {
+    public Trato(String montoDolares, String montoColones, String tipoCambio, String tratoId) {
         this.montoDolares = montoDolares;
         this.montoColones = montoColones;
         this.tipoCambio = tipoCambio;
+        this.tratoId = tratoId;
     }
 
     public String getMontoDolares() {
@@ -44,6 +46,13 @@ public class Trato {
     public void setTipoCambio(String tipoCambio) {
         this.tipoCambio = tipoCambio;
     }
-    
-    
+
+    public String getTratoId() {
+        return tratoId;
+    }
+
+    public void setTratoId(String tratoId) {
+        this.tratoId = tratoId;
+    }
+  
 }

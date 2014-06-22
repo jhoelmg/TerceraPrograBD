@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class SQLServerDAOFactory extends DAOFactory {
     
     public static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver"; // Ref http://technet.microsoft.com/en-us/library/ms378526.aspx
-    public static final String DBURL = "jdbc:sqlserver://PMARENCOG\\MSSQLSERVERJMG;databaseName=SistemaNegociaciones;integratedSecurity=true"; // Ref http://technet.microsoft.com/en-us/library/ms378428.aspx
+    public static final String DBURL = "jdbc:sqlserver://localhost;databaseName=SistemaNegociaciones;integratedSecurity=true"; // Ref http://technet.microsoft.com/en-us/library/ms378428.aspx
 
     // Method to create SQLServer connections
     public static Connection createConnection() {
@@ -79,6 +79,11 @@ public class SQLServerDAOFactory extends DAOFactory {
     {
         // SQLServerPersonDAO implements UsuarioDAO
         return new SQLServerGeneralDAO();
+    }
+
+    @Override
+    public TratoDAO getTratoDAO() {
+        return new SQLServerTratoDAO();
     }
     
 }

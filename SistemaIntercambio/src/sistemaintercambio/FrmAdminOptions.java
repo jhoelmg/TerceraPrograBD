@@ -79,6 +79,11 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
         btnListarPizarra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnListarPizarra.setText("Listar Pizarra");
+        btnListarPizarra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarPizarraActionPerformed(evt);
+            }
+        });
 
         btnFinalizarSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnFinalizarSesion.setText("Finalizar Sesion Negociacion");
@@ -106,12 +111,22 @@ public class FrmAdminOptions extends javax.swing.JFrame {
         });
 
         btnVerTransacciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnVerTransacciones.setText("Ver Transacciones");
+        btnVerTransacciones.setText("Ver Transferencias");
         btnVerTransacciones.setToolTipText("");
+        btnVerTransacciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerTransaccionesActionPerformed(evt);
+            }
+        });
 
         btnVerEstadisticas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnVerEstadisticas.setText("Ver Estadisticas");
         btnVerEstadisticas.setToolTipText("");
+        btnVerEstadisticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerEstadisticasActionPerformed(evt);
+            }
+        });
 
         btnCrearAgente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCrearAgente.setText("Crear Agente");
@@ -123,7 +138,11 @@ public class FrmAdminOptions extends javax.swing.JFrame {
 
         btnListarUsuarios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnListarUsuarios.setText("Listar Usuarios");
-        btnListarUsuarios.setActionCommand("Listar Usuarios");
+        btnListarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarUsuariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -225,8 +244,28 @@ public class FrmAdminOptions extends javax.swing.JFrame {
         // TODO add your handling code here:
         FrmFinalizarSesion frm = new FrmFinalizarSesion(userId, encryptedPassword);
         frm.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnFinalizarSesionActionPerformed
+
+    private void btnVerEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEstadisticasActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnVerEstadisticasActionPerformed
+
+    private void btnVerTransaccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTransaccionesActionPerformed
+        // TODO add your handling code here:
+        FmrVerTranferencias frm = new FmrVerTranferencias(userId, encryptedPassword);
+        frm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVerTransaccionesActionPerformed
+
+    private void btnListarPizarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPizarraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarPizarraActionPerformed
+
+    private void btnListarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarUsuariosActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
